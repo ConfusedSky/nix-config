@@ -74,38 +74,34 @@
   boot.loader.grub.useOSProber = true;
 
   networking.hostName = "MASA_ROG_NIX_OS_VM";
-  networking.networkmanager.enable = true;
+  # Set your time zone.
+  time.timeZone = "America/Los_Angeles";
 
-  time.timezone = "america/los_angeles";
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
 
-  # select internationalisation properties.
-  i18n.defaultlocale = "en_us.utf-8";
-
-  i18n.extralocalesettings = {
-    lc_address = "en_us.utf-8";
-    lc_identification = "en_us.utf-8";
-    lc_measurement = "en_us.utf-8";
-    lc_monetary = "en_us.utf-8";
-    lc_name = "en_us.utf-8";
-    lc_numeric = "en_us.utf-8";
-    lc_paper = "en_us.utf-8";
-    lc_telephone = "en_us.utf-8";
-    lc_time = "en_us.utf-8";
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
   };
 
-  # configure keymap in x11
+  # Configure keymap in X11
   services.xserver = {
     layout = "us";
-    xkbvariant = "";
+    xkbVariant = "";
   };
 
-  # allow unfree packages
-  nixpkgs.config.allowunfree = true;
-
-  # list packages installed in system profile. to search, run:
+  # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systempackages = with pkgs; [
-  #  vim # do not forget to add an editor to edit configuration.nix! the nano editor is also installed by default.
+  environment.systemPackages = with pkgs; [
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      wget
      neovim
      git
@@ -119,28 +115,14 @@
      stylua
   ];
 
-  # some programs need suid wrappers, can be configured further or are
+  # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
-    enablesshsupport = true;
+    enableSSHSupport = true;
   };
 
-  # list services that you want to enable:
-
-  # open ports in the firewall.
-  # networking.firewall.allowedtcpports = [ ... ];
-  # networking.firewall.allowedudpports = [ ... ];
-  # or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # this value determines the nixos release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. it‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   users.users = {
     masa = {
       initialPassword = "correcthorsebatterystaple";
