@@ -68,12 +68,7 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
-  # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
-
-  networking.hostName = "MASA_ROG_NIX_OS_VM";
+  networking.hostName = "nixos";
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 
@@ -113,6 +108,7 @@
      gopls
      golines
      stylua
+     ripgrep
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
